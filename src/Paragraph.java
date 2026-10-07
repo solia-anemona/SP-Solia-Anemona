@@ -1,27 +1,37 @@
 public class Paragraph implements Element {
     private String text;
+    private AlignStrategy alignStrategy;
 
     public Paragraph(String text) {
         this.text = text;
+        this.alignStrategy = null;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setAlignStrategy(AlignStrategy alignStrategy) {
+        this.alignStrategy = alignStrategy;
     }
 
     @Override
     public void print() {
-        System.out.println("Paragraph: " + text);
+        if (alignStrategy != null) {
+            alignStrategy.render(this);
+        } else {
+            System.out.println("Paragraph: " + text);
+        }
     }
 
     @Override
-    public void add(Element element) {
-        throw new UnsupportedOperationException("Cannot add to a Paragraph");
-    }
+    public void add(Element element) {}
 
     @Override
-    public void remove(Element element) {
-        throw new UnsupportedOperationException("Cannot remove from a Paragraph");
-    }
+    public void remove(Element element) {}
 
     @Override
     public Element get(int index) {
-        throw new UnsupportedOperationException("Cannot get from a Paragraph");
+        return null;
     }
 }
