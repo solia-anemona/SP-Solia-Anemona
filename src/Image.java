@@ -1,27 +1,34 @@
-public class Image implements Element {
-    private String url;
+import java.util.concurrent.TimeUnit;
 
-    public Image(String url) {
-        this.url = url;
+public class Image implements Element {
+    private String imageName;
+
+    public Image(String name) {
+        this.imageName = name;
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getName() {
+        return imageName;
     }
 
     @Override
     public void print() {
-        System.out.println("Image with url: " + url);
+        System.out.println("Image: " + imageName);
     }
 
     @Override
-    public void add(Element element) {
-        throw new UnsupportedOperationException("Cannot add to an Image");
-    }
+    public void add(Element element) {}
 
     @Override
-    public void remove(Element element) {
-        throw new UnsupportedOperationException("Cannot remove from an Image");
-    }
+    public void remove(Element element) {}
 
     @Override
     public Element get(int index) {
-        throw new UnsupportedOperationException("Cannot get from an Image");
+        return null;
     }
 }
