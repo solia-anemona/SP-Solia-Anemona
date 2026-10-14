@@ -28,4 +28,9 @@ public class TableOfContents implements Element {
     public Element get(int index) {
         throw new UnsupportedOperationException("Cannot get from TableOfContents");
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTableOfContents(this);
+    }
 }

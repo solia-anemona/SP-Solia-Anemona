@@ -5,6 +5,10 @@ public class Table implements Element {
         this.something = something;
     }
 
+    public String getTitle() {
+        return something;
+    }
+
     @Override
     public void print() {
         System.out.println("Table: " + something);
@@ -23,5 +27,10 @@ public class Table implements Element {
     @Override
     public Element get(int index) {
         throw new UnsupportedOperationException("Cannot get from a Table");
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTable(this);
     }
 }
