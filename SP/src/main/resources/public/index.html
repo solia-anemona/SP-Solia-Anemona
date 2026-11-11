@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Books</title>
+</head>
+<body>
+<h1>All Books</h1>
+<a href="#" onclick="fetchBooks()">Fetch Books</a>
+<ul id="books-list"></ul>
+
+<script>
+    function fetchBooks() {
+        const eventSource = new EventSource('/books-sse');
+
+        eventSource.onmessage = function(event) {
+            const book = JSON.parse(event.data);
+            const list = document.getElementById('books-list');
+            const item = document.createElement('li');
+
+
+            item.textContent = "Book ID: " + book.id + " - Title: " + book.title;
+            list.appendChild(item);
+        };
+    }
+</script>
+</body>
+</html>
