@@ -1,0 +1,29 @@
+TITLU PROIECT: Wedding & Event Organizer
+
+1. DESCRIERE GENERALA:
+Aplicatie web RESTful dezvoltata in Spring Boot care permite planificarea, organizarea si gestionarea detaliata a unei nunti sau a unui eveniment complex. Utilizatorii pot structura evenimentul pe zone sau etape, pot adauga furnizori, cheltuieli, inspiratii vizuale si pot genera rapoarte automate privind bugetul si numarul de invitati.
+
+2. STRUCTURA ARBORESCENTA (Composite Pattern):
+Ierarhia de date este organizata sub forma de arbore:
+- Root: Event (ex: "Nunta Ana & Andrei")
+- Composite Nodes (Noduri intermediare): Stage / Zone (ex: "Ceremonie", "Receptie & Restaurant", "Candy Bar & Decor", "Muzica & Foto")
+- Leaf Nodes (Elemente frunza):
+  * ExpenseItem: Nume cheltuiala, suma (RON/EUR), status plata (avans achitat / rest de plata)
+  * VendorContact: Nume furnizor, categorie, numar de telefon, observatii
+  * MoodboardImage: URL imagine de referinta / inspiratie decor si descriere
+  * GuestGroup: Nume grup/familie, numar persoane confirmate, restrictii alimentare
+
+3. FUNCTIONALITATI PRINCIPALE:
+- <add>: Crearea unui eveniment, adaugarea de zone/etape si popularea acestora cu elemente frunza (cheltuieli, furnizori, grupuri de invitati, imagini) prin endpoint-uri REST (POST).
+- <view>: Vizualizarea structurii complete a evenimentului sub forma de arbore atat in format JSON, cat si intr-o interfata web simpla (HTML + JS).
+- <summary> (Visitor Pattern): Calcularea si afisarea automata a statisticilor per zona sau pe intregul eveniment:
+  * Bugetul total cheltuit si defalcarea pe categorii
+  * Numarul total de invitati confirmati
+  * Numarul total de furnizori contractati
+- Notificari in timp real (Observer Pattern + SSE): Actualizarea automata a interfetei web la adaugarea unei noi cheltuieli sau a unui nou grup de invitati.
+
+4. TEHNOLOGII UTILIZATE:
+- Backend: Java 17, Spring Boot (Spring Web, Spring Data JPA)
+- Baza de date: H2 Database
+- Frontend: HTML5, CSS3, JavaScript (Fetch API + Server-Sent Events)
+- Version Control: Git & GitHub (dezvoltare organizata pe branch-uri per functionalitate)
